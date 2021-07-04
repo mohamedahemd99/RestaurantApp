@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'location.dart';
+import 'home.dart';
 import 'signUp.dart';
-import 'constants.dart';
+import '../Constants/constants.dart';
+import '../user_model.dart';
+import 'package:http/http.dart' as http;
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -11,14 +13,21 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailControl=TextEditingController();
   final TextEditingController passwordControl=TextEditingController();
+  UserModel _user;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+  Future<UserModel> Login( String name, String password) async{
+    final String apiURL = "http://yrnova.online/afcrm/index.php?action=login&phone="+name+"&password="+password;
+    final response =await http.get(apiURL,);
+      final String responseString = response.body;
+      print(responseString);
+  }
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image:AssetImage('images/home.jpeg'),
+              image:AssetImage('images/login.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken)
           ),
@@ -26,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child:Container(
           margin: EdgeInsets.all(15.0),
 
-          child: Column(
+          child: ListView(
             children: [
               Column(
                 mainAxisAlignment:MainAxisAlignment.start ,
@@ -79,10 +88,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  FlatButton(onPressed: (){
-                    setState(() {
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => Home(),));
-                    });
+                  FlatButton(onPressed: ()async {
+                    final String name=emailControl.text ;
+                    final String password=passwordControl.text ;
+                    Login(name, password);
+                   setState(() {
+                      //Navigator.push(context,MaterialPageRoute(builder: (context) => Home(),));
+                   });
                   },
                       child: Container(
                         margin: EdgeInsets.all(20.0),
@@ -142,8 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   )
                 ],
               ),
-              FlatButton(child: Text("Forgot Password?",style: TextStyle(color: Color(0xfff7f7f7),),)),
-              SizedBox(height: 100.0,),
+              FlatButton(onPressed:() {} ,child: Text("Forgot Password?",style: TextStyle(color: Color(0xfff7f7f7),),)),
+              SizedBox(height: 80.0,),
+
               FlatButton(onPressed: () {
 
                 setState(() {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:restaurant/Constants/widthandheight.dart';
 import 'loginScreen.dart';
-import 'location.dart';
-import 'constants.dart';
+import 'home.dart';
+import '../Constants/constants.dart';
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -14,20 +15,25 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor:Color(0xff848484) ,
       body: Container(
+        width: getwidth(context),
+        height: getheight(context),
+
         decoration: BoxDecoration(
           image: DecorationImage(
-              image:AssetImage('images/home.jpeg'),
+              image:AssetImage('images/login.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken)
           ),
         ),
         child:Container(
+          height: getheight(context),
+          width: getwidth(context),
           margin: EdgeInsets.all(15.0),
 
           child: Column(
             children: [
               Column(
-                mainAxisAlignment:MainAxisAlignment.start ,
+                mainAxisAlignment:MainAxisAlignment.center ,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   GestureDetector(
@@ -171,7 +177,7 @@ class _SignUpState extends State<SignUp> {
                       child: FlatButton(onPressed: (){
 
                         setState(() {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => Home(),));
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => Home(null),));
                         });
                       },
                           child: Container(

@@ -18,6 +18,7 @@ dependencies:
   geocoder:
   qr_code_scanner:
   http:
+  flutter_spinkit:
 
 
 dev_dependencies:

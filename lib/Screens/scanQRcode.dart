@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'constants.dart';
+import '../Constants/constants.dart';
 class QRcode extends StatefulWidget {
   @override
   _QRcodeState createState() => _QRcodeState();

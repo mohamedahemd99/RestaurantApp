@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geocoder/model.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'selectedLocation.dart';
+import 'home.dart';
 
 class SelectLocation extends StatefulWidget {
   @override
@@ -20,9 +19,8 @@ class _SelectLocationState extends State<SelectLocation> {
   getAddressLocation(Coordinates pos1)async{
     var addresses = await Geocoder.local.findAddressesFromCoordinates(pos1);
     var first = addresses.first;
-    print("${first.addressLine}");
-    print(pos1);
-    address1= "${first.addressLine}";
+    return "${first.addressLine}";
+
   }
   @override
   void initState() {
@@ -36,15 +34,14 @@ class _SelectLocationState extends State<SelectLocation> {
 
 
 
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        getAddressLocation(Coordinates(pos1.latitude ,pos1.longitude));
-        print("das");
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home1(data:address1),));
+      floatingActionButton: FloatingActionButton(onPressed: ()async{
+        String add=await getAddressLocation(Coordinates(pos1.latitude ,pos1.longitude));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home(add)));
       },child: Text("Submit"),),
 
 
 
-      body: GoogleMap(initialCameraPosition: CameraPosition(target: LatLng(31.2556260, 29.9866080),zoom: 10.0),
+      body: GoogleMap(initialCameraPosition:CameraPosition(target: LatLng(31.2556260, 29.9866080),zoom: 14.0),
         zoomControlsEnabled:false ,
         onTap: (pos){
         Marker m = Marker(markerId: MarkerId("1"),
