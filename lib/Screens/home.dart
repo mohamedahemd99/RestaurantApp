@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:restaurant/Constants/componants.dart';
 import 'package:restaurant/Constants/widthandheight.dart';
 import 'file:///C:/Users/Rossia/AndroidStudioProjects/restaurant/lib/Screens/scanQRcode.dart';
 import 'mapScreen.dart';
@@ -115,33 +116,18 @@ getCurrentLocation()async{
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(7.0)), color:yellowTextColor,),
                         margin: EdgeInsets.all(15.0),
-                        child: InkWell(onTap: (){},
-                            child: Container(
-                              child: Center(child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text("Go",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),),
-                              )),
-
-                            )
-                        ),
+                        child:DefultButtom(buttomText: "Go", ontap: null),
                       ),
                     ),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(7.0)), color:yellowTextColor,),
                         margin: EdgeInsets.all(15.0),
-                        child: InkWell(onTap: (){
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => QRcode(),));
+                        child: DefultButtom(
+                          buttomText: "QR Code",
+                            ontap:(){Navigator.push(context,MaterialPageRoute(builder: (context) => QRcode(),));
+                            },)
 
-                        },
-                            child: Container(
-                              child: Center(child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text("QR Code",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),),
-                              )),
-
-                            )
-                        ),
                       ),
                     ),
                   ],
@@ -155,38 +141,20 @@ getCurrentLocation()async{
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(7.0)), color:yellowTextColor,),
                         margin: EdgeInsets.all(15.0),
-                        child: InkWell(onTap: (){
+                        child:DefultButtom(buttomText:"Current location" , ontap: (){
                           setState(() {
                             getCurrentLocation();
                           });
-
-                        },
-                            child: Container(
-                              child: Center(child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Text("Current location",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),),
-                              )),
-
-                            )
-                        ),
+                        })
                       ),
                     ),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(7.0)), color:yellowTextColor,),
                         margin: EdgeInsets.all(15.0),
-                        child: InkWell(onTap: (){
+                        child:DefultButtom(buttomText:"Select location" , ontap: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => SelectLocation(),));},)
 
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => SelectLocation(),));
-                        },
-                            child: Container(
-                              child: Center(child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Center(child: Text("Select location",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),)),
-                              )),
-
-                            )
-                        ),
                       ),
                     ),
                   ],
