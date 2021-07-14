@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:restaurant/Constants/widthandheight.dart';
 import 'constants.dart';
 
@@ -28,72 +29,19 @@ class OfferCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 200,
-            child: Stack(
-                children: [
-                  Image(image:AssetImage("images/popular5.png"),fit:BoxFit.cover, ),
-                  Padding(
-                    padding: const EdgeInsets.only(top:8,left: 8.0),
-                    child: Container(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:BorderRadius.all(Radius.circular(6.0)),
-                            color: Colors.black,
-
-                          ),
-                          height: 25,
-                          width: 80,
-                          alignment: Alignment.center,
-                          child: Text("Promoted",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      alignment: Alignment.topRight,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 17.0,
-                        child: Icon(Icons.favorite_border,color: Colors.red,),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:40.0,right: 8.0),
-                    child: Container(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:BorderRadius.all(Radius.circular(6.0)),
-                          color: Colors.green,
-
-                        ),
-                        height: 25,
-                        width: 100,
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.star_border,color: Colors.white,),
-                            Text("3.1(300+)",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ]),
-          ),
+          ReuseableImage(height: 200,width: getwidth(context),),
           Container(
             padding: EdgeInsets.all(15.0),
             child: InkWell(onTap: (){},
-              child: Text("Famous Dave's BabaJons",overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20.0),),),
+              child: Text("Famous Dave's BabaJons",
+                overflow: TextOverflow.ellipsis,maxLines: 1,
+                style: firstFontCard,),),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Text("Vegetrian . Undian . mndsasdasamdn",overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(color: Colors.grey,fontSize: 15.0),),
+            child: Text("Vegetrian . Undian . mndsasdasamdn",
+              overflow: TextOverflow.ellipsis,maxLines: 1,
+              style: secondFontCard,),
           ),
           SizedBox(height: 10.0,),
           Row(children: [
@@ -425,15 +373,17 @@ class StartesTextAndSepartedLine extends StatelessWidget {
 }
 
 class BackArrow extends StatelessWidget {
-
+  BackArrow({this.color=yellowTextColor,this.ontap});
+  Color color;
+  Function ontap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap:ontap,
       child: Row(
         children: [
-          Icon(Icons.arrow_back_ios,color: yellowTextColor,size: 15.0,),
-          Text(" Back",style: TextStyle(color: yellowTextColor,fontSize: 18.0,fontWeight: FontWeight.bold),),
+          Icon(Icons.arrow_back_ios,color: color,size: 15.0,),
+          Text(" Back",style: TextStyle(color: color,fontSize: 18.0,fontWeight: FontWeight.bold),),
         ],
       ),
     );
@@ -441,11 +391,12 @@ class BackArrow extends StatelessWidget {
 }
 
 
-
 class DefultButtom extends StatelessWidget {
-  DefultButtom({@required this.buttomText,@required this.ontap});
+  DefultButtom({@required this.buttomText,@required this.ontap,this.color=yellowTextColor,this.width=3});
   Function ontap;
   String buttomText;
+  Color color;
+  int width;
 
   @override
   Widget build(BuildContext context) {
@@ -453,10 +404,10 @@ class DefultButtom extends StatelessWidget {
         onTap:ontap ,
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 15.0),
-          width: getwidth(context)/3,
+          width: getwidth(context)/width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
-            color:yellowTextColor,
+            color:color,
           ),
           child: Center(child: Text(buttomText,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),)),
         )
@@ -525,5 +476,351 @@ class BottomText extends StatelessWidget {
           )),
     );
 
+  }
+}
+
+class ImageWithStack extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          color: Colors.white,
+          boxShadow:  <BoxShadow>[
+            new BoxShadow(
+                color: Colors.grey,
+                blurRadius: 3.0,
+                offset: new Offset(2.0, 2.0),
+                spreadRadius: 2
+
+            )
+          ]
+      ),
+      height: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ReuseableImage(height: 150  ,width: getwidth(context)*0.6,),
+          Container(
+             padding: EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("The osahan Restaurant",style: firstFontCard,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 5.0,),
+                Text("• North • Hamburgers",style: secondFontCard,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 10.0,),
+                Row(
+                  children: [
+                    StarADS(background: Colors.yellow[600],padLeft: 0.0,),
+                    StarADS(background: Colors.yellow[600],padLeft: 3.0,),
+                    StarADS(background: Colors.yellow[600],padLeft: 3.0),
+                    StarADS(background: Colors.yellow[600],padLeft: 3.0),
+                    StarADS(background: Colors.black,padLeft: 3.0),
+                  ],
+                ),
+                SizedBox(height: 20.0,),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(2.0),
+                      decoration: BoxDecoration(
+                        color:Colors.green,
+                        borderRadius: BorderRadius.circular(5.0)
+                      ),
+                      child: Text("OFFER",style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold ,) ,),
+                    ),
+                    Text(" 65% OSAHAN50"),
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+class FiveStar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return   Row(children: [
+      Icon(Icons.star_border,color: yellowTextColor,),
+      Icon(Icons.star_border,color: yellowTextColor,),
+      Icon(Icons.star_border,color: yellowTextColor,),
+      Icon(Icons.star_border,color: yellowTextColor,),
+      Icon(Icons.star_border),
+    ],);
+  }
+}
+
+class StarADS extends StatelessWidget {
+  StarADS({this.background,this.padLeft});
+  Color background;
+  double padLeft;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:  EdgeInsets.only(left:padLeft),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          color:background ,
+        ),
+        child: Icon(Icons.star_border,color: Colors.white,size: 17,),
+      ),
+    );
+  }
+}
+
+
+class SaledItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 150,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+        boxShadow:<BoxShadow> [
+          BoxShadow(
+            offset: Offset(2.0, 2.0),
+            color: Colors.grey,
+            spreadRadius: 2,
+            blurRadius: 3.0
+
+          )
+        ]
+      ),
+      width: getwidth(context),
+      child: Row(
+        children: [
+          ReuseableImage(height: 150,width: getwidth(context)*0.4,),
+          Padding(
+
+            padding: const EdgeInsets.all( 10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("The osahan Restaurant",style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),),
+                SizedBox(height: 7.0,),
+                Text("North • Hamburgers • Pure veg",style: TextStyle(fontSize: 15.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                SizedBox(height: 15.0,),
+                Container(
+                  color: Color(0xffededed),
+                  padding: EdgeInsets.all(5.0),
+                  child: Row(
+                    children: [
+                      Icon(Icons.timer,color: Colors.grey[700],size: 15.0,),
+                      Text("15-30 min",style: TextStyle(color: Colors.grey[700]),)
+                    ],
+                  ),
+                ),
+                SizedBox(height: 15.0,),
+
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(2.0),
+                      decoration: BoxDecoration(
+                          color:Colors.green,
+                          borderRadius: BorderRadius.circular(5.0)
+                      ),
+                      child: Text("OFFER",style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold ,) ,),
+                    ),
+                    Text(" 65% OSAHAN50"),
+                  ],
+                ),
+
+              ],
+            ),
+          )
+
+        ],
+      ),
+    );
+  }
+}
+class ReuseableImage extends StatelessWidget {
+  ReuseableImage({@required this.height,@required this.width});
+  double height;
+  double width;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      child: Stack(
+          children: [
+            Image(image:AssetImage("images/popular5.png"),fit:BoxFit.cover,height: 200,width:width, ),
+            Container(
+              padding: EdgeInsets.all(8),
+              alignment: Alignment.topLeft,
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius:BorderRadius.all(Radius.circular(6.0)),
+                    color: Colors.black,
+                  ),
+                  height: 25,
+                  width: 80,
+                  alignment: Alignment.center,
+                  child: Text("Promoted",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8),
+              alignment: Alignment.topRight,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 17.0,
+                child: Icon(Icons.favorite_border,color: Colors.red,),
+              ),
+            ),
+            Container(
+              alignment: Alignment.bottomRight,
+              padding: EdgeInsets.all(8),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius:BorderRadius.all(Radius.circular(6.0)),
+                  color: Colors.green,
+                ),
+
+                height: 25,
+                width: 100,
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.star_border,color: Colors.white,),
+                    Text("3.1(300+)",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+                  ],
+                ),
+              ),
+            )
+          ]),
+    );
+  }
+}
+
+class FavoriteItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          color: Colors.white,
+          boxShadow:  <BoxShadow>[
+            new BoxShadow(
+                color: Colors.grey,
+                blurRadius: 3.0,
+                offset: new Offset(2.0, 2.0),
+                spreadRadius: 2
+
+            )
+          ]
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ReuseableImage(height: 150  ,width: getwidth(context)*0.5,),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("The osahan Restaurant",style: firstFontCard,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 5.0,),
+                Text("• North • Hamburgers",style: secondFontCard,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 10.0,),
+                Row(children: [
+                  Container(
+                    color: Color(0xffededed),
+                    padding: EdgeInsets.all(10.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.timer,color: Colors.grey[700],size: 15.0,),
+                        Text("15-30 min",style: TextStyle(color: Colors.grey[700]),)
+                      ],
+                    ),
+                  ),
+                ],),
+                SizedBox(height: 20.0,),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(2.0),
+                      decoration: BoxDecoration(
+                          color:Colors.green,
+                          borderRadius: BorderRadius.circular(5.0)
+                      ),
+                      child: Text("OFFER",style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold ,) ,),
+                    ),
+                    Text(" 65% OSAHAN50", overflow: TextOverflow.ellipsis,),
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+class ExpansionWidget extends StatelessWidget {
+  ExpansionWidget({this.widget,this.header,this.icon});
+  Widget widget;
+  String header;
+  IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(7.0)),
+          color: backgroundColor2,
+          boxShadow:  <BoxShadow>[
+            new BoxShadow(
+                color: Colors.grey,
+                blurRadius: 3.0,
+                offset: new Offset(2.0, 2.0),
+                spreadRadius: 2
+
+            )
+          ]
+      ),
+      margin: EdgeInsets.only(top: 10.0),
+      child: ExpansionTile(
+        title: Row(
+          children: [
+            Icon(icon,color: Colors.green,),
+            SizedBox(width: 10.0,),
+            Expanded(
+              child: Text(header,style: TextStyle(color: Colors.green),),
+            )
+          ],
+        ),
+        children: [
+          Column(
+            children: [
+              widget
+
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

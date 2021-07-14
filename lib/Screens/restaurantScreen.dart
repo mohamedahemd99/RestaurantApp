@@ -83,11 +83,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                         SizedBox(height: 3.0,),
 
                         Row(children: [
-                          Icon(Icons.star_border,color: yellowTextColor,),
-                          Icon(Icons.star_border,color: yellowTextColor,),
-                          Icon(Icons.star_border,color: yellowTextColor,),
-                          Icon(Icons.star_border,color: yellowTextColor,),
-                          Icon(Icons.star_border),
+                          FiveStar(),
                           SizedBox(width: 5.0,),
                           Text("(334 reviews)",style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.black),)
                         ],)
@@ -202,11 +198,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
-                                            Icon(Icons.star_border,color: yellowTextColor,),
-                                            Icon(Icons.star_border,color: yellowTextColor,),
-                                            Icon(Icons.star_border,color: yellowTextColor,),
-                                            Icon(Icons.star_border,color: yellowTextColor,),
-                                            Icon(Icons.star_border,color: Colors.black,),
+                                            FiveStar(),
                                           ],
                                         ),
                                       )
@@ -240,12 +232,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                       SizedBox(height: 20.0,),
                                       Row(
                                         children: [
-                                          Icon(Icons.star_border,color: yellowTextColor,),
-                                          Icon(Icons.star_border,color: yellowTextColor,),
-                                          Icon(Icons.star_border,color: yellowTextColor,),
-                                          Icon(Icons.star_border,color: yellowTextColor,),
-                                          Icon(Icons.star_border,color: Colors.black,),
-                                          Text("   334",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),)
+                                          FiveStar(),
+                                          Text("   334",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
                                         ],
                                       ),
                                       SizedBox(height: 15.0,),
@@ -378,13 +366,6 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                 ),
                               ),
                               SizedBox(height: 60.0,),
-
-
-
-
-
-
-
                             ],
                           ),
                         ),

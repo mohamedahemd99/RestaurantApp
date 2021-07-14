@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:restaurant/Constants/componants.dart';
 import 'package:restaurant/Constants/widthandheight.dart';
+import 'package:restaurant/Screens/mainHome.dart';
 import 'file:///C:/Users/Rossia/AndroidStudioProjects/restaurant/lib/Screens/scanQRcode.dart';
 import 'mapScreen.dart';
 import '../Constants/constants.dart';
@@ -116,7 +117,9 @@ getCurrentLocation()async{
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(7.0)), color:yellowTextColor,),
                         margin: EdgeInsets.all(15.0),
-                        child:DefultButtom(buttomText: "Go", ontap: null),
+                        child:DefultButtom(buttomText: "Go", ontap: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => MainHome(),));
+                        }),
                       ),
                     ),
                     Expanded(

@@ -19,6 +19,11 @@ dependencies:
   qr_code_scanner:
   http:
   flutter_spinkit:
+  sqflite:
+  intl:
+  conditional_builder:
+  bloc:
+  flutter_bloc:
 
 
 dev_dependencies:
