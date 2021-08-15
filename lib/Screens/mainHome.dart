@@ -4,6 +4,7 @@ import 'package:restaurant/Constants/componants.dart';
 import 'package:restaurant/Constants/constants.dart';
 import 'package:restaurant/Constants/widthandheight.dart';
 import 'package:restaurant/navBar/favorites.dart';
+import 'file:///C:/Users/Rossia/AndroidStudioProjects/ui_project1/RestaurantApp/lib/navBar/order/order.dart';
 import 'package:restaurant/navBar/profile.dart';
 
 class MainHome extends StatefulWidget {
@@ -40,6 +41,9 @@ class _MainHomeState extends State<MainHome> {
             if(index==3){
             Navigator.push(context,MaterialPageRoute(builder: (context) => Favorites(),));
           }
+          if(index ==0){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Order(),));
+          }
 
         },
 
@@ -67,7 +71,6 @@ class _MainHomeState extends State<MainHome> {
 
         ],
       ),
-
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Expanded(
@@ -85,6 +88,7 @@ class _MainHomeState extends State<MainHome> {
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(children: [
                     SizedBox(height: 10.0,),
+                    //menu
                     Container(
                       height:100 ,
                       child: ListView.builder(itemBuilder:(context, index) => MenuCard()  ,
@@ -93,6 +97,7 @@ class _MainHomeState extends State<MainHome> {
                       ),
                     ),
                     SizedBox(height: 25.0,),
+                    //best offer
                     Container(
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,9 +115,11 @@ class _MainHomeState extends State<MainHome> {
                               SizedBox(height: 50.0,),
                             ])
                     ),
+                    //Detailed Ads
                     Column(
                         children: [
                           Text("ADS",style: mainFontStyle,),
+                          SizedBox(height: 15.0,),
                           Row(children: [
                             Expanded(child: Text("Most popular",overflow: TextOverflow.ellipsis,
                               style: TextStyle(fontSize: 25.0),)),
@@ -130,6 +137,7 @@ class _MainHomeState extends State<MainHome> {
                           SizedBox(
                             height: 20.0,
                           ),
+                          //Ads
                           Container(
                             height: 300,
                             child: ListView.separated(
@@ -143,7 +151,7 @@ class _MainHomeState extends State<MainHome> {
                     ),
                     SizedBox(height: 30.0,),
                     Row(children: [
-                      Expanded(child: Text("Most sales",overflow: TextOverflow.ellipsis,
+                      Expanded(child: Text("Restaurants",overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 25.0),)),
                       Expanded(
                         child: Row(
@@ -159,6 +167,7 @@ class _MainHomeState extends State<MainHome> {
                     SizedBox(
                       height: 20.0,
                     ),
+                    //Restaurants
                     ListView.separated(
                       itemBuilder:(context, index) => SaledItem() ,
                       itemCount: 3,

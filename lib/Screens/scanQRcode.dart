@@ -2,12 +2,14 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:restaurant/Constants/widthandheight.dart';
 import '../Constants/constants.dart';
 class QRcode extends StatefulWidget {
   @override
   _QRcodeState createState() => _QRcodeState();
 }
 class _QRcodeState extends State<QRcode> {
+
   final qrKey= GlobalKey(debugLabel: 'QR');
   QRViewController controller;
   Barcode barcode;
@@ -17,9 +19,9 @@ class _QRcodeState extends State<QRcode> {
     controller?.dispose();
     super.dispose();
   }
+
   @override
   void reassemble()async{
-
     super.reassemble();
     if(Platform.isAndroid){
       await controller.pauseCamera();
@@ -37,7 +39,7 @@ class _QRcodeState extends State<QRcode> {
      borderRadius: 10.0,
      borderWidth: 10.0,
      borderLength: 20.0,
-     cutOutSize: MediaQuery.of(context).size.width*0.8,
+     cutOutSize: getwidth(context)*0.8,
    ),
  );
 
@@ -55,21 +57,17 @@ class _QRcodeState extends State<QRcode> {
 
   void onQRViewCreated(QRViewController controller){
     setState(() =>this.controller=controller);
-
     controller.scannedDataStream.listen((barcode)=>setState(()=>this.barcode=barcode));
-
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
           buildQrView(context),
           Positioned(bottom: 10,child: buildResult()),
-
-
         ],
       ),
     );

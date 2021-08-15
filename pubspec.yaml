@@ -24,7 +24,9 @@ dependencies:
   conditional_builder:
   bloc:
   flutter_bloc:
-
+  dio:
+  hexcolor:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

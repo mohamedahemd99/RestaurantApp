@@ -12,5 +12,5 @@ const hintTextProfileColor=Colors.grey;
 const lableTextFiledStyle=TextStyle(color: yellowTextColor,fontSize: 20.0,fontWeight: FontWeight.bold);
 const mainFontStyle=TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30.0);
 const secondFontCard = TextStyle(color: Colors.grey,fontSize: 15.0);
-const firstFontCard =TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20.0);
+const firstFontCard =TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18.0);
 

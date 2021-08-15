@@ -6,6 +6,8 @@ import 'package:restaurant/Constants/widthandheight.dart';
 import 'package:restaurant/Screens/mainHome.dart';
 import 'package:restaurant/navBar/profile.dart';
 
+import 'order/order.dart';
+
 class Favorites extends StatefulWidget {
   @override
   _FavoritesState createState() => _FavoritesState();
@@ -42,6 +44,9 @@ class _FavoritesState extends State<Favorites> {
           }
           if(index==3){
             Navigator.push(context,MaterialPageRoute(builder: (context) => Favorites(),));
+          }
+          if(index ==0){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Order(),));
           }
 
         },

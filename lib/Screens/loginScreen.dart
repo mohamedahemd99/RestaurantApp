@@ -15,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailControl=TextEditingController();
   final TextEditingController passwordControl=TextEditingController();
+  bool isPassword=true;
   // UserModel _user;
 
   // Future<UserModel> Login( String name, String password) async{
@@ -41,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top:10.0,bottom: 40.0),
-                  child: BackArrow(),
+                  child: BackArrow(ontap: (){Navigator.pop(context);},),
                 ),
                 Column(
                   mainAxisAlignment:MainAxisAlignment.start ,
@@ -53,9 +54,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 SizedBox(height: 30.0,),
-                DefultTextFiled(),
+                DefultTextFiled(lable: "User Name",controller: emailControl,),
                 SizedBox(height: 30.0,),
-                DefultTextFiled(),
+                DefultTextFiled(controller: passwordControl,
+                  lable: "Password",
+                  isPassword: isPassword,
+                  passwordFunction:  (){
+                   setState(() {
+                     isPassword=!isPassword;
+                   });},
+                  suffix: isPassword?Icons.visibility:Icons.visibility_off,
+                ),
 
                 //Buttons
                 Column(

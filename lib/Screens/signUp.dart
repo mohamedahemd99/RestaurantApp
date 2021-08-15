@@ -34,7 +34,6 @@ class _SignUpState extends State<SignUp> {
             padding: EdgeInsets.symmetric(horizontal: 15.0),
 
             child: ListView(
-
               children: [
                 Column(
                   children: [
@@ -59,16 +58,16 @@ class _SignUpState extends State<SignUp> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
 
-                            DefultTextFiled(),
+                            DefultTextFiled(lable: "First Name",),
                             SizedBox(height: 15.0,),
-                            DefultTextFiled(),
+                            DefultTextFiled(lable: "Second Name",),
                             SizedBox(height: 15.0,),
-                            DefultTextFiled(),
+                            DefultTextFiled(lable: "Email",),
                             SizedBox(height: 15.0,),
-                            DefultTextFiled(),
+                            DefultTextFiled(lable: "Password",),
                             SizedBox(height: 15.0,),
 
-                            DefultTextFiled(),
+                            DefultTextFiled(lable: "Confirm Password",),
                           ],
                         ),
                       ),

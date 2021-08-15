@@ -3,6 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:restaurant/Constants/componants.dart';
 import 'package:restaurant/Constants/constants.dart';
 import 'package:restaurant/Constants/widthandheight.dart';
+import 'package:restaurant/Screens/mainHome.dart';
+import 'package:restaurant/navBar/favorites.dart';
+import 'file:///C:/Users/Rossia/AndroidStudioProjects/ui_project1/RestaurantApp/lib/navBar/order/order.dart';
+import 'package:restaurant/navBar/profile.dart';
 
 class RestaurantScreen extends StatefulWidget {
   @override
@@ -13,27 +17,83 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        alignment: Alignment.bottomCenter,
+        child: CircleAvatar(
+          backgroundColor: backgroundColor,
+          radius: 35.0,
+          child: FloatingActionButton(onPressed: (){},child: Container(
+            child: Icon(Icons.home,size: 40,),
+            alignment: Alignment.center,
+          ),backgroundColor: yellowTextColor,),
+        ),
+      ),
+      bottomNavigationBar: new BottomNavigationBar(
+        onTap: (index) {
+          if(index ==4){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Profile(),));
+          }
+          if(index==3){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Favorites(),));
+          }
+          if(index ==0){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Order(),));
+          }
+        },
+        fixedColor:Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.shopping_cart,color: Colors.grey,),
+            title: new Text("cart"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.shopping_cart,color: Colors.grey),
+            title: new Text("My orders"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.home,color: Colors.grey),
+            title: new Text("Home"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.favorite_border,color: Colors.grey),
+            title: new Text("Favorites"),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.person,color: Colors.grey),
+            title: new Text("Profile"),
+          ),
+
+        ],
+      ),
+
       backgroundColor: backgroundColor,
     appBar:AppBar(
+      leading:InkWell(onTap: (){
+        Navigator.push(context,MaterialPageRoute(builder: (context) => MainHome(),));
+      }, child: Row(children: [
+        Icon(Icons.arrow_back_ios,color: yellowTextColor,),
+        Text("Back",style: TextStyle(color: yellowTextColor),),
+      ],
+      ),) ,
       backgroundColor: backgroundColor,
       elevation: 0.0,
       titleSpacing: 15.0,
-      title:InkWell(onTap: (){}, child: Row(children: [
-          Icon(Icons.arrow_back_ios,color: yellowTextColor,),
-          Text("Back",style: TextStyle(color: yellowTextColor),),
-        ],
-      ),) ,) ,
+) ,
       body: Column(
         children: [
           Container(
             padding: EdgeInsets.all(15),
             child: Row(
               children: [
+                //restaurant name
                 Expanded(flex: 3,
                     child: Text("Conrad Chicago Restaurant",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold,fontSize: 25.0),
                     maxLines: 2,),),
+                //contact
                 Expanded(flex: 1,
                     child:InkWell(
                       child:
@@ -56,6 +116,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  //about restaurant
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15.0,right: 15.0,left: 15.0),
                     child: Column(
@@ -63,6 +124,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       children: [
                         Text("963 Madyson Drive Suite 679",style: TextStyle(color: Colors.grey[600],fontSize: 15.0),),
                         SizedBox(height: 10.0,),
+                        //delivery
                         Row(
                           children: [
                             Text("Delivery :",
@@ -72,6 +134,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           ],
                         ),
                         SizedBox(height: 3.0,),
+                        //Door's open
                         Row(
                           children: [
                             Text("Open time :",style: TextStyle(color: Colors.grey[700],fontSize: 15.0,fontWeight: FontWeight.bold),),
@@ -81,7 +144,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           ],
                         ),
                         SizedBox(height: 3.0,),
-
+                        //rate
                         Row(children: [
                           FiveStar(),
                           SizedBox(width: 5.0,),
@@ -90,6 +153,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       ],
                     ),
                   ),
+                  //options
                   Container(
                     padding: EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
@@ -114,6 +178,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       children: [
                         Text("Best Offers",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30.0),),
                        SizedBox(height: 25.0,),
+                        //offers
                         Container(
                           height: 380,
                           child: ListView.builder(
@@ -128,6 +193,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           color: backgroundColor2,
                           child: Column(
                             children: [
+                              //menu
                               Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Row(children: [
@@ -145,6 +211,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           ),
                               ),
                               SizedBox(height: 20.0,),
+                              //menu card
                               Container(
                                 height:100 ,
                                 child: ListView.builder(itemBuilder:(context, index) => MenuCard()  ,
@@ -153,6 +220,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                 ),
                               ),
                               SizedBox(height: 60.0,),
+                              //foods bs 3ayz ytzbt
                               ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
@@ -165,6 +233,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               SizedBox(height: 50.0,),
                               Text("Featured Items",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30.0),),
                               SizedBox(height: 25.0,),
+                              //featured items card
                               Container(
                                 height: 355,
                                 child: ListView.builder(
@@ -175,6 +244,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                 ),
                               ),
                               SizedBox(height: 100.0,),
+                              //rating place
                               Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Container(
@@ -242,112 +312,15 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            margin: EdgeInsets.symmetric(vertical: 2.0),
-                                            child: Row(
-                                              children: [
-                                                Expanded(flex: 1,child: Text("5 Star")),
-                                                Expanded(
-                                                  flex: 7,
-                                                  child: Container(
-                                                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                                                    height: 10.0,
-                                                    decoration: BoxDecoration(
-                                                      color: hintColor,
-                                                      borderRadius: BorderRadius.all(Radius.circular(10))
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(flex: 1,child: Text("56 %"))
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.symmetric(vertical: 2.0),
-                                            child: Row(
-                                              children: [
-                                                Expanded(flex: 1,child: Text("4 Star")),
-                                                Expanded(
-                                                  flex: 7,
-                                                  child: Container(
-                                                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                                                    height: 10.0,
-                                                    decoration: BoxDecoration(
-                                                        color: hintColor,
-                                                        borderRadius: BorderRadius.all(Radius.circular(10))
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(flex: 1,child: Text("23 %"))
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.symmetric(vertical: 2.0),
-                                            child: Row(
-                                              children: [
-                                                Expanded(flex: 1,child: Text("3 Star")),
-                                                Expanded(
-                                                  flex: 7,
-                                                  child: Container(
-                                                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                                                    height: 10.0,
-                                                    decoration: BoxDecoration(
-                                                        color: hintColor,
-                                                        borderRadius: BorderRadius.all(Radius.circular(10))
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(flex: 1,child: Text("11 %"))
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: getwidth(context)/1,
-                                            margin: EdgeInsets.symmetric(vertical: 2.0),
-                                            child: Row(
-                                              children: [
-                                                Expanded(flex: 1,child: Text("2 Star")),
-                                                Expanded(
-                                                  flex: 7,
-                                                  child: Container(
-                                                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                                                    height: 10.0,
-                                                    decoration: BoxDecoration(
-                                                        color: hintColor,
-                                                        borderRadius: BorderRadius.all(Radius.circular(10))
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(flex: 1,child: Text("6 %"))
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.symmetric(vertical: 2.0),
-                                            child: Row(
-                                              children: [
-                                                Expanded(flex: 1,child: Text("1 Star")),
-                                                Expanded(
-                                                  flex: 7,
-                                                  child: Container(
-                                                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                                                    height: 10.0,
-                                                    decoration: BoxDecoration(
-                                                        color: hintColor,
-                                                        borderRadius: BorderRadius.all(Radius.circular(10))
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(flex: 1,child: Text("4 %"))
-                                              ],
-                                            ),
-                                          ),
-
-
+                                          Rating(),
+                                          Rating(),
+                                          Rating(),
+                                          Rating(),
+                                          Rating(),
                                         ],
                                       ),
                                       SizedBox(height: 15.0,),
+                                      //rate and review
                                       Center(
                                         child: InkWell(
                                           child: Container(
@@ -360,7 +333,6 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                           ),
                                         ),
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -379,49 +351,10 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
 
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        alignment: Alignment.bottomCenter,
-        child: CircleAvatar(
-          backgroundColor: backgroundColor,
-          radius: 35.0,
-          child: FloatingActionButton(onPressed: (){},child: Container(
-            child: Icon(Icons.home,size: 40,),
-            alignment: Alignment.center,
-          ),backgroundColor: yellowTextColor,),
-        ),
-      ),
-      bottomNavigationBar: new BottomNavigationBar(
-        fixedColor:Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          new BottomNavigationBarItem(
-            icon: new Icon(Icons.shopping_cart,color: Colors.grey,),
-            title: new Text("cart"),
-          ),
-          new BottomNavigationBarItem(
-            icon: new Icon(Icons.shopping_cart,color: Colors.grey),
-            title: new Text("My orders"),
-          ),
-          new BottomNavigationBarItem(
-            icon: new Icon(Icons.home,color: Colors.grey),
-            title: new Text("Home"),
-          ),
-          new BottomNavigationBarItem(
-            icon: new Icon(Icons.favorite_border,color: Colors.grey),
-            title: new Text("Favorites"),
-          ),
-          new BottomNavigationBarItem(
-            icon: new Icon(Icons.person,color: Colors.grey),
-            title: new Text("Profile"),
-          ),
-
-        ],
-      ),
-
 
     );
   }
 }
+
 
 

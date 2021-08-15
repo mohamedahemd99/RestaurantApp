@@ -6,6 +6,8 @@ import 'package:restaurant/Constants/widthandheight.dart';
 import 'package:restaurant/Screens/mainHome.dart';
 import 'package:restaurant/navBar/favorites.dart';
 
+import 'order/order.dart';
+
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
@@ -38,6 +40,9 @@ class _ProfileState extends State<Profile> {
         onTap: (index) {
           if(index ==4){
             Navigator.push(context,MaterialPageRoute(builder: (context) => Profile(),));
+          }
+          if(index ==0){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Order(),));
           }
           if(index==3){
             Navigator.push(context,MaterialPageRoute(builder: (context) => Favorites(),));
